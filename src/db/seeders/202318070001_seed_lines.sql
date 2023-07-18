@@ -18,5 +18,5 @@ INSERT INTO metro_lines (name, jp_name, sign, color, color_code, line_length, in
 INSERT INTO metro_lines (name, jp_name, sign, color, color_code, line_length, inaugurated, operator, sub_line) VALUES 
 ('Asakusa Line', '浅草線', 'A', 'Rose', 'EC6E65', 18.3, 1960, 'Toei Subway', TRUE),
 ('Mita Line', '三田線', 'I', 'Blue', '006CB6', 26.5, 1968, 'Toei Subway', TRUE),
-('Shinjuku Line', '	新宿線', 'S', 'Leaf', 'B0C124', 23.5, 1978, 'Toei Subway', TRUE),
+('Shinjuku Line', '新宿線', 'S', 'Leaf', 'B0C124', 23.5, 1978, 'Toei Subway', TRUE),
 ('Ōedo Line', '大江戸線', 'E', 'Magenta', 'b6007a', 40.7, 1991, 'Toei Subway', TRUE);

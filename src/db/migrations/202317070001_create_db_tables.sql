@@ -153,12 +153,12 @@ CREATE TABLE lines_stations (
 
     initial_station BOOLEAN, -- Is the first station of the line?
     final_station BOOLEAN, -- Is the final station of the line?
-    order INT NOT NULL, -- Order of the station in the given line
+    station_order INT NOT NULL, -- Order of the station in the given line
 
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
     CONSTRAINT lines_stations_line_foreign
     FOREIGN KEY (line_id) REFERENCES metro_lines(id),
     CONSTRAINT lines_stations_station_foreign
