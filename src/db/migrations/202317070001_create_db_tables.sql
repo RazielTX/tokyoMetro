@@ -7,6 +7,7 @@ USE metro_tokyo;
 
 -- LINES' TABLE
 -- I'm using metro_lines instead of lines due to lines being a reserved keyword.
+
 CREATE TABLE metro_lines (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 
@@ -15,19 +16,19 @@ CREATE TABLE metro_lines (
     sign VARCHAR(2) NOT NULL,
     color VARCHAR (10) NOT NULL, -- Color name of the line
     color_code VARCHAR(7) NOT NULL, -- Hexa code shown in the map
-    subLine BOOLEAN NOT NULL DEFAULT false,
+    sub_line BOOLEAN NOT NULL DEFAULT false,
 
     line_length FLOAT UNSIGNED NOT NULL,
     inaugurated YEAR NOT NULL,
     operator VARCHAR(15) NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     PRIMARY KEY (id)
 ) DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
---STATIONS' TABLE
+-- STATIONS' TABLE
 
 CREATE TABLE stations (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -37,7 +38,7 @@ CREATE TABLE stations (
     ward VARCHAR (20) NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     PRIMARY KEY (id)
 ) DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
@@ -51,7 +52,7 @@ CREATE TABLE station_location (
     location POINT NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
     PRIMARY KEY (id),
     CONSTRAINT station_location_station_foreign_id
@@ -90,7 +91,7 @@ CREATE TABLE trains (
     3. N000 represents the number of the train related to its manufacturing batch
 
     */
-    serial_number VARCHAR(10) UNIQUE NOT NULL CHECK (LENGTH(serial_number = 10),
+    serial_number VARCHAR(10) UNIQUE NOT NULL CHECK (LENGTH(serial_number) = 10),
 
     line_id INT UNSIGNED NOT NULL,
     status BOOLEAN NOT NULL DEFAULT false,
@@ -99,7 +100,7 @@ CREATE TABLE trains (
     manufactured_year YEAR NOT NULL,
     
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     PRIMARY KEY (serial_number),
     CONSTRAINT trains_line_id_foreign
@@ -136,4 +137,30 @@ CREATE TABLE active_drivers (
     FOREIGN KEY (driver_id) REFERENCES drivers(id),
     CONSTRAINT active_drivers_train_foreign_id
     FOREIGN KEY (train_serial_number) REFERENCES trains(serial_number)
+) DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+/*
+PIVOTES TABLES
+*/
+
+-- LINES STATIONS' TABLE
+
+CREATE TABLE lines_stations (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+
+    line_id INT UNSIGNED NOT NULL,
+    station_id INT UNSIGNED NOT NULL,
+
+    initial_station BOOLEAN, -- Is the first station of the line?
+    final_station BOOLEAN, -- Is the final station of the line?
+    order INT NOT NULL, -- Order of the station in the given line
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (id)
+    CONSTRAINT lines_stations_line_foreign
+    FOREIGN KEY (line_id) REFERENCES metro_lines(id),
+    CONSTRAINT lines_stations_station_foreign
+    FOREIGN KEY (station_id) REFERENCES stations(id)
 ) DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
