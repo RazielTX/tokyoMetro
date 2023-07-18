@@ -1,0 +1,25 @@
+{
+  "name": "tokyometro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RazielTX/tokyoMetro.git"
+  },
+  "keywords": [
+    "SQL",
+    "Node",
+    "Express",
+    "JS"
+  ],
+  "author": "RazielTX",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RazielTX/tokyoMetro/issues"
+  },
+  "homepage": "https://github.com/RazielTX/tokyoMetro#readme"
+}
