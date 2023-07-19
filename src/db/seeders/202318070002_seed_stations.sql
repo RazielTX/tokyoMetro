@@ -265,7 +265,7 @@ INSERT INTO stations (name, jp_name, ward) VALUES
 ('Uchisaiwaicho', '内幸町', 'Chiyoda'),
 -- ('Hibiya', '日比谷', 'Chiyoda'),
 -- ('Ōtemachi', '大手町', 'Chiyoda'),
-('Jimbōchō', '神保町', 'Chiyoda'),
+-- ('Jimbōchō', '神保町', 'Chiyoda'),
 ('Suidobashi', '水道橋', 'Bunkyō'),
 ('Kasuga', '春日', 'Bunkyō'),
 ('Hakusan', '白山', 'Bunkyō'),

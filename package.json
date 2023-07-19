@@ -14,12 +14,16 @@
     "SQL",
     "Node",
     "Express",
-    "JS"
+    "JS",
+    "TS"
   ],
   "author": "RazielTX",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/RazielTX/tokyoMetro/issues"
   },
-  "homepage": "https://github.com/RazielTX/tokyoMetro#readme"
+  "homepage": "https://github.com/RazielTX/tokyoMetro#readme",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
 }
