@@ -14,8 +14,7 @@ const access: PoolOptions = {
   host: DB_HOST,
   user: DB_USER,
   password: DB_PASSWORD,
-  port: 3306,
-  database: DB_DATABASE,
+  database: DB_DATABASE
 };
 
 const pool = mysql.createPool(access);
