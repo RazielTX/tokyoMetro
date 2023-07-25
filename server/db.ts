@@ -20,5 +20,3 @@ const access: PoolOptions = {
 const pool = mysql.createPool(access);
 
 export default pool;
-
-
